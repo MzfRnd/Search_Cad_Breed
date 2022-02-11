@@ -16,8 +16,16 @@ function showCatsData(data) {
   title.innerText = data[0].name.toUpperCase();
   catBreed.innerText = `Cats breed is ${data[0].name}`;
   description.innerText = data[0].description;
-  altNames.innerText = `Alternative names of this breeds are ${data[0].altNames}`;
-  lifeSpan.innerText = `Life span is ${data[0].lifeSpan}`;
+  if (altNames.innerText) {
+    altNames.innerText = `Alternative names of this breeds are ${data[0].altNames}`;
+  } else {
+    altNames.innerText = "There are no alternative names for this breed";
+  }
+  if (lifeSpan.innerText) {
+    lifeSpan.innerText = `Life span is ${data[0].lifeSpan}`;
+  } else {
+    lifeSpan.innerText = "Life span is unknown";
+  }
   wikiLink.innerText = "More information";
   wikiLink.href = data[0].wikipedia_url;
   // Adding all the elements under the catDiv
