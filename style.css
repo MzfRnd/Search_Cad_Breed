@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+.inputDiv {
+  display: flex;
+  width: 200px;
+}
+
+.catDiv > * {
+  margin: 10px 0 10px 10px;
+}
