@@ -1,10 +1,19 @@
 //just to use it in event listener at the bottom
 const btn = document.getElementById("btn");
+const breed = document.getElementById("breed");
+let catDiv;
 
 function showCatsData(data) {
   const entryPoint = document.getElementById("entryPoint");
+  if (catDiv) {
+    entryPoint.removeChild(catDiv);
+  }
   // Creating the html part of the elements that hold the information
-  const catDiv = document.createElement("div");
+
+  if (data.length == 0) {
+    return;
+  }
+  catDiv = document.createElement("div");
   const title = document.createElement("h2");
   const catBreed = document.createElement("p");
   const description = document.createElement("p");
@@ -13,16 +22,20 @@ function showCatsData(data) {
   const wikiLink = document.createElement("a");
   // The inner text of the elements
   title.innerText = data[0].name.toUpperCase();
-  title.innerText = data[0].name.toUpperCase();
   catBreed.innerText = `Cats breed is ${data[0].name}`;
-  description.innerText = data[0].description;
-  if (altNames.innerText) {
-    altNames.innerText = `Alternative names of this breeds are ${data[0].altNames}`;
+  if (data[0].description) {
+    description.innerText = data[0].description;
+  } else {
+    description.innerText = "No description";
+  }
+
+  if (data[0].alt_names) {
+    altNames.innerText = `Alternative names of this breeds are ${data[0].alt_names}`;
   } else {
     altNames.innerText = "There are no alternative names for this breed";
   }
-  if (lifeSpan.innerText) {
-    lifeSpan.innerText = `Life span is ${data[0].lifeSpan}`;
+  if (data[0].life_span) {
+    lifeSpan.innerText = `Life span is ${data[0].life_span}`;
   } else {
     lifeSpan.innerText = "Life span is unknown";
   }
@@ -37,7 +50,6 @@ function showCatsData(data) {
   entryPoint.appendChild(catDiv);
   catDiv.appendChild(wikiLink);
   // Just to see what information we get from the cat Api
-  console.log(data[0]);
   // this the wrapper of the cat information elements. I added all children margin in the css.
   catDiv.classList.add("catDiv");
 }
